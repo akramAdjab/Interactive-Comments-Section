@@ -1,13 +1,455 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* IMPORTING GOOGLE FONTS: RUBIK FONT */
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap");
+
+/* CSS CUSTOM PROPERTIES: VARIABLES */
+:root {
+  /* TYPOGRAPHY */
+  --font-primary: "Rubik";
+  --font-sz--sm: 1.6rem;
+  --font-sz--md: 1.7rem;
+  --font-wg--sm: 400;
+  --font-wg--md: 500;
+  --font-wg--lg: 700;
+
+  --ln-ht: 1.8;
+
+  /* COLORS */
+  --color-primary: hsl(238, 40%, 52%);
+  --color-primary-light: hsl(239, 57%, 85%);
+  --color-secondary: hsl(358, 79%, 66%);
+  --color-secondary-light: hsl(357, 100%, 86%);
+
+  --color-dark: hsl(212, 24%, 26%);
+  --color-dark-light: hsl(211, 10%, 45%);
+  --color-gray: hsl(223, 19%, 93%);
+  --color-gray-light: hsl(228, 33%, 97%);
+  --color-white: hsl(0, 0%, 100%);
+
+  /* BORDER RADIUS */
+  --border-rd: 1rem;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* RESET */
+*,
+*:is(::before, ::after) {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  color: var(--color-dark-light);
+  min-height: 100vh;
+  font-size: var(--font-sz--sm);
+  font-family: var(--font-primary);
+  background-color: var(--color-gray-light);
+
+  display: grid;
+  place-items: center;
+}
+
+#root {
+  min-height: 100vh;
+  position: relative;
+}
+
+/* GENERAL */
+p {
+  line-height: var(--ln-ht);
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+button:focus {
+  outline: none;
+}
+
+svg path {
+  transition: all 0.2s;
+}
+
+.buttons {
+  margin-left: auto;
+
+  display: flex;
+  gap: 3rem;
+}
+
+.button-delete {
+  color: var(--color-secondary) !important;
+}
+
+.button-delete:hover {
+  color: var(--color-secondary-light) !important;
+}
+
+.button-delete:hover svg path {
+  fill: var(--color-secondary-light) !important;
+}
+
+.line {
+  width: 2px !important;
+  height: 100%;
+  border-radius: 5rem;
+  background-color: var(--color-gray);
+
+  position: absolute;
+  top: 0;
+  left: 5.3rem;
+}
+
+/* --- COMPONENT: APP --- */
+.app {
+  width: 75rem;
+  padding: 4.8rem 0;
+
+  display: grid;
+  place-items: center;
+  gap: 3rem;
+}
+
+/* --- COMPONENT: CommentList ---  */
+.comment-list,
+.comment-list--container {
+  display: grid;
+  gap: 2rem;
+}
+
+/* --- COMPONENT: Comment --- */
+.comment {
+  padding: 3rem;
+  border-radius: var(--border-rd);
+  background-color: var(--color-white);
+
+  display: flex;
+  gap: 3rem;
+}
+
+.replies {
+  position: relative;
+}
+
+.replies > div,
+.replies form {
+  width: 86%;
+
+  justify-self: end;
+}
+
+.comment__content {
+  flex: 1;
+}
+
+.comment__user-box {
+  margin-bottom: 2.4rem;
+
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.comment__user-box img,
+.add-comment img {
+  width: 3.6rem;
+  aspect-ratio: 1;
+}
+
+.comment h1 {
+  color: var(--color-dark);
+  font-size: 1.6rem;
+  font-weight: var(--font-wg--md);
+}
+
+.comment__user-box button {
+  color: var(--color-primary);
+  font-size: var(--font-sz--md);
+  font-weight: var(--font-wg--md);
+  transition: all 0.2s;
+
+  display: flex;
+  gap: 0.8rem;
+}
+
+.comment__user-box button svg {
+  transform: scale(0.8);
+
+  align-self: center;
+}
+
+.comment__user-box button:hover {
+  color: var(--color-primary-light);
+}
+
+.comment__user-box button:hover svg path {
+  fill: var(--color-primary-light);
+}
+
+.comment__cur-user {
+  color: var(--color-white);
+  padding: 0.3rem 0.8rem;
+  font-size: 1.2rem;
+  font-weight: var(--font-wg--md);
+  line-height: 1;
+  border-radius: 0.2rem;
+  background-color: var(--color-primary);
+}
+
+/* .comment__message {
+  line-height: var(--ln-ht);
+} */
+
+/* --- COMPONENT: SCORE --- */
+.comment__score-box {
+  padding: 1.6rem 1rem;
+  border-radius: inherit;
+  background-color: var(--color-gray);
+
+  align-self: start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.comment__score-box button {
+  padding: 0 0.8rem;
+}
+
+.comment__score-box button svg path {
+  transition: all 0.2s;
+}
+
+.comment__score-box button:hover svg path {
+  fill: var(--color-primary);
+}
+
+.comment__score-box p {
+  color: var(--color-primary);
+  font-size: var(--font-sz--md);
+  font-weight: var(--font-wg--md);
+}
+
+/* --- COMPONENT: AddComment --- */
+.add-comment {
+  width: 100%;
+  gap: 2rem;
+}
+
+.add-comment img,
+.add-comment button {
+  align-self: flex-start;
+}
+
+.add-comment img {
+  width: 4.4rem;
+}
+
+.add-comment textarea {
+  color: inherit;
+  min-height: 12rem;
+  padding: 1.6rem;
+  font-size: inherit;
+  font-family: inherit;
+  line-height: var(--ln-ht);
+  border: 1px solid var(--color-gray);
+  border-radius: var(--border-rd);
+  background-color: transparent;
+  resize: vertical;
+
+  flex: 1;
+}
+
+.add-comment button {
+  color: var(--color-white);
+  padding: 1.2rem 2.4rem;
+  font-size: var(--font-sz--md);
+  font-weight: var(--font-wg--md);
+  text-transform: uppercase;
+  border-radius: var(--border-rd);
+  background-color: var(--color-primary);
+  transition: all 0.2s;
+}
+
+.add-comment button:hover {
+  background-color: var(--color-primary-light);
+}
+
+/* --- COMPONENT: DeletePopup --- */
+.overlay {
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.5;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.popup {
+  width: 40%;
+  padding: 3rem;
+  border-radius: var(--border-rd);
+  background-color: var(--color-white);
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2.4rem;
+
+  transform: translate(-50%, -50%);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+
+.popup h2,
+.popup p {
+  grid-column: 1 / -1;
+}
+
+.popup h2 {
+  color: var(--color-dark);
+  font-weight: var(--font-wg--md);
+}
+
+.popup button {
+  color: var(--color-white);
+  padding: 1.6rem;
+  font-size: var(--font-sz--md);
+  font-weight: var(--font-wg--md);
+  text-transform: uppercase;
+  border-radius: var(--border-rd);
+  background-color: var(--color-dark-light);
+}
+
+.popup button:last-child {
+  background-color: var(--color-secondary);
+}
+
+.popup button:hover {
+  background-color: var(--color-dark);
+}
+
+.popup button:hover:last-child {
+  background-color: var(--color-secondary-light);
+}
+
+/* --- MEDIA QUERIES --- */
+@media only screen and (max-width: 47.5em) {
+  .app {
+    padding: 4.8rem 3rem;
+  }
+}
+
+@media only screen and (max-width: 25em) {
+  body {
+    width: 100%;
+  }
+
+  /* GENERAL */
+
+  .line {
+    left: 0;
+  }
+
+  /* --- COMPONENT: Comment */
+  .comment {
+    position: relative;
+  }
+
+  .comment__score-box,
+  .comment__content .buttons {
+    position: absolute;
+  }
+
+  .comment__score-box {
+    padding: 0.6rem;
+    flex-direction: row;
+    gap: 1rem;
+
+    bottom: 2.1rem;
+    left: 3rem;
+  }
+
+  .comment__content .buttons {
+    bottom: 3rem;
+    right: 3rem;
+  }
+
+  .comment__message {
+    margin-bottom: 6.2rem;
+  }
+
+  .replies > div,
+  .replies form {
+    width: 96%;
+  }
+
+  /* --- COMPONENT: AddComment --- */
+  .add-comment {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 2.4rem;
+  }
+
+  .add-comment img {
+    align-self: center;
+  }
+
+  .add-comment textarea {
+    order: -1;
+    grid-column: 1 / -1;
+  }
+
+  .add-comment button {
+    padding: 1.6rem 3.2rem;
+    justify-self: end;
+  }
+
+  /* --- AUTHOR: AKRAM ADJAB --- */
+  .attribution {
+    bottom: 5px;
+  }
+}
+
+/* --- AUTHOR: AKRAM ADJAB --- */
+.attribution {
+  color: inherit;
+  margin: 0 auto;
+  font-size: 1rem;
+  text-align: center;
+
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+}
+
+.attribution__link:link,
+.attribution__link:visited {
+  color: var(--color-primary);
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  transition: all 0.3s ease;
+}
+
+.attribution__link:hover,
+.attribution__link:active {
+  color: var(--color-primary-light);
+  border-bottom-color: currentColor;
 }
