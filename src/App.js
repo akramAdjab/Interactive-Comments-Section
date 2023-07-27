@@ -431,7 +431,7 @@ function Author() {
       </a>
       . Coded by
       <a
-        href="https://www.linkedin.com/in/akram-adjab-219191230/"
+        href="https://www.linkedin.com/in/akramadjab/"
         target="_blank"
         rel="noreferrer"
         class="attribution__link"
