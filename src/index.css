@@ -213,7 +213,7 @@ svg path {
 .comment__score-box {
   padding: 1.6rem 1rem;
   border-radius: inherit;
-  background-color: var(--color-gray);
+  background-color: var(--color-gray-light);
 
   align-self: start;
   display: flex;
