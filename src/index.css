@@ -351,11 +351,15 @@ svg path {
 @media only screen and (max-width: 47.5em) {
   .app {
     width: 100%;
-    padding: 4.8rem 3rem;
+    padding: 4.8rem 2.4rem;
   }
 }
 
-@media only screen and (max-width: 25em) {
+@media only screen and (max-width: 32em) {
+  html {
+    font-size: 50%;
+  }
+
   body {
     width: 100%;
   }
@@ -383,6 +387,11 @@ svg path {
 
     bottom: 2.1rem;
     left: 3rem;
+  }
+
+  .comment__score-box button {
+    display: grid;
+    place-items: center;
   }
 
   .comment__content .buttons {
