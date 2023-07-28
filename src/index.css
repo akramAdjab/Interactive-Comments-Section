@@ -266,8 +266,14 @@ svg path {
   border-radius: var(--border-rd);
   background-color: transparent;
   resize: vertical;
+  transition: all 0.2s;
 
   flex: 1;
+}
+
+.add-comment textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
 }
 
 .add-comment button {
